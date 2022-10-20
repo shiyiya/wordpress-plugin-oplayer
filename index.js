@@ -21,7 +21,7 @@ for (var i = 0; i < __oplayersOptions__.length; i++) {
   OPlayer.make(document.getElementById("player" + options["id"]), {
     source: {
       src: options["video"]["url"],
-      poster: options["video"]["pic"],
+      poster: options["video"]["poster"],
       format: options["video"]["type"],
     },
     volume: options["volume"],
