@@ -50,7 +50,7 @@ function shortcode($atts, $content, $tag)
   if ($atts['preload']) $data['preload'] = (in_array($atts['preload'], array('auto', 'metadata', 'none')) == true) ? $atts['preload'] : 'metadata';
 
   $subtitle = array(
-    'url' => $atts['subtitleurl'] ? $atts['subtitleurl'] : '',
+    'src' => $atts['subtitlesrc'] ? $atts['subtitlesrc'] : '',
     'type' => $atts['subtitletype'] ? $atts['subtitletype'] : 'webvtt',
     'fontSize' => $atts['subtitlefontsize'] ? $atts['subtitlefontsize'] : '25px',
     'bottom' => $atts['subtitlebottom'] ? $atts['subtitlebottom'] : '10%',
