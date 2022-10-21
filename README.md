@@ -2,9 +2,11 @@
 
 Another HTML5 video player comes to WordPress.
 
-```bbcode
+```
 [oplayer src="https://oplayer.vercel.app/君の名は.mp4" poster="https://oplayer.vercel.app/poster.png"]
 ```
+
+![](https://pic.peo.pw/a/2022/10/21/635223f766bc0.png)
 
 ## Options
 
