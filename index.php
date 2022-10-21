@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin Name: WordPress-Plugin-OPlayer
-* Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+* Plugin URI: https://github.com/shiyiya/WordPress-Plugin-OPlayer
 * Description: Another HTML5 video player comes to WordPress
 * Version: 0.0.1
 * Author: oplayer
@@ -29,36 +29,36 @@ function shortcode($atts, $content, $tag)
     'id' => $id,
     'live' => false,
     'autoplay' => false,
-    'primaryColor' => $atts['theme'] ? $atts['theme'] : '#FADFA3',
+    'theme' => isset($atts['theme']) ? $atts['theme'] : '#FADFA3',
     'loop' => false,
     'screenshot' => false,
     'hotkey' => true,
     'preload' => 'metadata',
-    'volume' => $atts['volume'] ? $atts['volume'] : 0.8,
+    'volume' => isset($atts['volume']) ? $atts['volume'] : 0.8,
 
     'src' => $atts['src'] ? $atts['src'] : '',
-    'poster' => $atts['poster'] ? $atts['poster'] : '',
-    'type' => $atts['type'] ? $atts['type'] : 'auto',
-    'thumbnails' => $atts['thumbnails'] ? $atts['thumbnails'] : '',
-    'thumbnailsCount' => $atts['thumbnailsCount'] ? $atts['thumbnailsCount'] : '',
+    'poster' => isset($atts['poster']) ? $atts['poster'] : '',
+    'type' => isset($atts['type']) ? $atts['type'] : 'auto',
+    'thumbnails' => isset($atts['thumbnails']) ? $atts['thumbnails'] : '',
+    'thumbnailsCount' => isset($atts['thumbnailsCount']) ? $atts['thumbnailsCount'] : '',
   );
 
-  if ($atts['autoplay']) $data['autoplay'] = ($atts['autoplay'] == 'true') ? true : false;
-  if ($atts['loop']) $data['loop'] = ($atts['loop'] == 'true') ? true : false;
-  if ($atts['screenshot']) $data['screenshot'] = ($atts['screenshot'] == 'true') ? true : false;
-  if ($atts['hotkey']) $data['hotkey'] = ($atts['hotkey'] == 'true') ? true : false;
-  if ($atts['preload']) $data['preload'] = (in_array($atts['preload'], array('auto', 'metadata', 'none')) == true) ? $atts['preload'] : 'metadata';
+  if (isset($atts['autoplay'])) $data['autoplay'] = ($atts['autoplay'] == 'true') ? true : false;
+  if (isset($atts['loop'])) $data['loop'] = ($atts['loop'] == 'true') ? true : false;
+  if (isset($atts['screenshot']))  $data['screenshot'] = ($atts['screenshot'] == 'true') ? true : false;
+  if (isset($atts['hotkey'])) $data['hotkey'] = ($atts['hotkey'] == 'true') ? true : false;
+  if (isset($atts['preload']))  $data['preload'] = (in_array($atts['preload'], array('auto', 'metadata', 'none')) == true) ? $atts['preload'] : 'metadata';
 
   $subtitle = array(
-    'src' => $atts['subtitlesrc'] ? $atts['subtitlesrc'] : '',
-    'type' => $atts['subtitletype'] ? $atts['subtitletype'] : 'webvtt',
-    'fontSize' => $atts['subtitlefontsize'] ? $atts['subtitlefontsize'] : '25px',
-    'bottom' => $atts['subtitlebottom'] ? $atts['subtitlebottom'] : '10%',
-    'color' => $atts['subtitlecolor'] ? $atts['subtitlecolor'] : '#b7daff',
+    'src' => isset($atts['subtitlesrc']) ? $atts['subtitlesrc'] : '',
+    'type' => isset($atts['subtitletype']) ? $atts['subtitletype'] : 'webvtt',
+    'fontSize' => isset($atts['subtitlefontsize']) ? $atts['subtitlefontsize'] : '25px',
+    'bottom' => isset($atts['subtitlebottom']) ? $atts['subtitlebottom'] : '10%',
+    'color' => isset($atts['subtitlecolor']) ? $atts['subtitlecolor'] : '#b7daff',
   );
   $data['subtitle'] = $subtitle;
 
-  return '<div id="player' . $id . '"></div>' . "<script>__oplayersOptions__.push({" + json_encode($data) + "});</script>";
+  return '<div id="player' . $id . '"></div>' . "<script>__oplayersOptions__.push(" . json_encode($data) . ");</script>";
 }
 
 function head()
@@ -82,9 +82,9 @@ function footer()
     wp_enqueue_script('oplayer-plugin-hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/hls@latest/dist/index.umd.js"), false, 'latest', false);
   }
 
-  wp_enqueue_script('hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/core@latest/dist/index.umd.js"), false, 'latest', false);
-  wp_enqueue_script('hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/ui@latest/dist/index.umd.js"), false, 'latest', false);
-  wp_enqueue_script('init-dplayer', plugins_url('index.js', __FILE__), false, 'latest', false);
+  wp_enqueue_script('oplayer-core', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/core@latest/dist/index.umd.js"), false, 'latest', false);
+  wp_enqueue_script('oplayer-ui', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/ui@latest/dist/index.umd.js"), false, 'latest', false);
+  wp_enqueue_script('init-player', plugins_url('index.js', __FILE__), false, 'latest', false);
 }
 
 function settings_link($links, $file)

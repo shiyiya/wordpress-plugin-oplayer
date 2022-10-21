@@ -1,34 +1,41 @@
 for (var i = 0; i < __oplayersOptions__.length; i++) {
-  var options = __oplayersOptions__[i];
+  var options = __oplayersOptions__[i]
   var plugins = [
     OUI({
-      theme: { primaryColor: options["theme"] },
-      screenshot: options["screenshot"],
-      hotkey: options["hotkey"],
-      subtitle: [
-        { source: { src: options["subtitle"]["src"], default: true } },
-      ],
+      theme: { primaryColor: options['theme'] },
+      screenshot: options['screenshot'],
+      hotkey: options['hotkey'],
+      subtitle: options['subtitle']['src']
+        ? [
+            {
+              source: { src: options['subtitle']['src'], default: true },
+              fontSize: options['subtitle']['fontSize'],
+              bottom: options['subtitle']['bottom'],
+              color: options['subtitle']['color'],
+            },
+          ]
+        : undefined,
       thumbnails: {
-        src: options["thumbnails"],
-        number: options["thumbnails"]["thumbnailsCount"],
+        src: options['thumbnails'],
+        number: options['thumbnails']['thumbnailsCount'],
       },
     }),
-  ];
+  ]
 
-  if (Hls && OHls) plugins.push(OHls());
-  if (ODash) plugins.push(ODash());
+  if (window.Hls && window.OHls) plugins.push(OHls())
+  if (window.ODash) plugins.push(ODash())
 
-  OPlayer.make(document.getElementById("player" + options["id"]), {
+  OPlayer.make(document.getElementById('player' + options['id']), {
     source: {
-      src: options["video"]["url"],
-      poster: options["video"]["poster"],
-      format: options["video"]["type"],
+      src: options['src'],
+      poster: options['poster'],
+      format: options['type'],
     },
-    volume: options["volume"],
-    preload: options["preload"],
-    autoplay: options["autoplay"],
-    loop: options["loop"],
+    volume: options['volume'],
+    preload: options['preload'],
+    autoplay: options['autoplay'],
+    loop: options['loop'],
   })
     .use(plugins)
-    .create();
+    .create()
 }

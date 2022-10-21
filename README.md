@@ -2,6 +2,10 @@
 
 Another HTML5 video player comes to WordPress.
 
+```bbcode
+[oplayer src="https://oplayer.vercel.app/君の名は.mp4" poster="https://oplayer.vercel.app/poster.png"]
+```
+
 ## Options
 
 | 名称              | shortcode        | 默认值                                  | 描述                                                                   |
@@ -15,12 +19,12 @@ Another HTML5 video player comes to WordPress.
 | hotkey            | hotkey           | true                                    | 开启热键                                                               |
 | preload           | preload          | 'metadata'                              | 预加载，可选值: 'none', 'metadata', 'auto'                             |
 | volume            | volume           | 0.7                                     | 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效 |
-| video.src         | src              | -                                       | 视频链接                                                               |
+| video.src         | src              | `required`                              | 视频链接                                                               |
 | video.poster      | poster           | -                                       | 视频封面                                                               |
 | video.thumbnails  | thumbnails       | -                                       | 视频缩略图                                                             |
 | video.type        | type             | 'auto'                                  | 可选值: 'auto', 'hls', 'dash', 'normal'                                |
 | subtitle          |                  | -                                       | 外挂字幕                                                               |
-| subtitle.src      | subtitlesrc      | `required`                              | 字幕链接                                                               |
+| subtitle.src      | subtitlesrc      | -                                       | 字幕链接                                                               |
 | subtitle.type     | subtitletype     | 'webvtt'                                | 字幕类型，可选值: 'webvtt', 'ass'，目前只支持 webvtt                   |
 | subtitle.fontSize | subtitlefontsize | '20px'                                  | 字幕字号                                                               |
 | subtitle.bottom   | subtitlebottom   | '40px'                                  | 字幕距离播放器底部的距离，取值形如: '10px' '10%'                       |

@@ -1,32 +1,30 @@
 <?php
 
-$admin_tags = array(
-  'input' => array(
-    'type' => array(),
-    'name' => array(),
-    'id' => array(),
-    'disabled' => array(),
-    'value' => array(),
-    'checked' => array(),
-  ),
-);
+add_action('admin_menu', 'scheduler_admin_actions');
 
-if (is_admin()) {
-  add_options_page('OPlayer', 'OPlayer', 'manage_options', 'oplayer', 'plugin_options_menu');
+function scheduler_admin_actions()
+{
+  add_options_page(
+    'OPlayer',
+    'OPlayer',
+    'manage_options',
+    'OPlayer',
+    'plugin_options_menu'
+  );
 }
 
 function plugin_options_menu()
 {
+
   if (!current_user_can('manage_options')) {
     wp_die(__('You do not have sufficient permissions to access this page.'));
   }
 
   table_head();
 
-  // save options if this is a valid post
   if (
-    isset($_POST['oplayer_save_field']) && // input var okay
-    wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['oplayer_save_field'])), 'oplayer_save_action') // input var okay
+    isset($_POST['oplayer_save_field']) &&
+    wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['oplayer_save_field'])), 'oplayer_save_action')
   ) {
     echo "<div class='updated settings-error' id='setting-error-settings_updated'><p><strong>Settings saved.</strong></p></div>\n";
     admin_save();
@@ -59,8 +57,8 @@ function plugin_options_menu()
 
 function admin_save()
 {
-  update_option('enable_hls', array_key_exists('enable_hls', $_POST)); // input var okay
-  update_option('enable_dash', array_key_exists('enable_dash', $_POST)); // input var okay
+  update_option('enable_hls', array_key_exists('enable_hls', $_POST));
+  update_option('enable_dash', array_key_exists('enable_dash', $_POST));
 }
 
 function table_head()
@@ -87,6 +85,17 @@ function table_foot()
 
 function admin_table_row($head, $comment, $input, $input_id)
 {
+  $admin_tags = array(
+    'input' => array(
+      'type' => array(),
+      'name' => array(),
+      'id' => array(),
+      'disabled' => array(),
+      'value' => array(),
+      'checked' => array(),
+    ),
+);
+
 ?>
   <tr valign="top">
     <th scope="row">
@@ -97,5 +106,5 @@ function admin_table_row($head, $comment, $input, $input_id)
       <p class="description"><?php echo wp_kses_post($comment); ?></p>
     </td>
   </tr>
-  <?php
+<?php
 }
