@@ -74,16 +74,16 @@ function footer()
 {
   if (get_option('enable_dash')) {
     wp_enqueue_script('dash', esc_url("https://cdn.jsdelivr.net/npm/dashjs@4.5.0/dist/dash.all.min.js"), false, '4.5.0', false);
-    wp_enqueue_script('oplayer-plugin-dash', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/dash@latest/dist/index.umd.js"), false, 'latest', false);
+    wp_enqueue_script('oplayer-plugin-dash', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/dash@latest/dist/index.min.js"), false, 'latest', false);
   }
 
   if (get_option('enable_hls')) {
     wp_enqueue_script('hls', esc_url("https://cdn.jsdelivr.net/npm/hls.js@1.2.4/dist/hls.min.js"), false, '1.2.4', false);
-    wp_enqueue_script('oplayer-plugin-hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/hls@latest/dist/index.umd.js"), false, 'latest', false);
+    wp_enqueue_script('oplayer-plugin-hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/hls@latest/dist/index.min.js"), false, 'latest', false);
   }
 
-  wp_enqueue_script('oplayer-core', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/core@latest/dist/index.umd.js"), false, 'latest', false);
-  wp_enqueue_script('oplayer-ui', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/ui@latest/dist/index.umd.js"), false, 'latest', false);
+  wp_enqueue_script('oplayer-core', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/core@latest/dist/index.min.js"), false, 'latest', false);
+  wp_enqueue_script('oplayer-ui', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/ui@latest/dist/index.min.js"), false, 'latest', false);
   wp_enqueue_script('init-player', plugins_url('index.js', __FILE__), false, 'latest', false);
 }
 
