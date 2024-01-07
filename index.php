@@ -29,7 +29,6 @@ function shortcode($atts, $content, $tag)
     'id' => $id,
     'live' => false,
     'autoplay' => false,
-    'theme' => isset($atts['theme']) ? $atts['theme'] : '#FADFA3',
     'loop' => false,
     'screenshot' => false,
     'hotkey' => true,
@@ -42,6 +41,25 @@ function shortcode($atts, $content, $tag)
     'thumbnails' => isset($atts['thumbnails']) ? $atts['thumbnails'] : '',
     'thumbnailsCount' => isset($atts['thumbnailsCount']) ? $atts['thumbnailsCount'] : '',
   );
+
+  $theme = array(
+    'primaryColor' => isset($atts['theme']) ? $atts['theme'] : '#FADFA3'
+  );
+
+  if(isset($atts['watermark'])){
+    $theme['watermark'] =  array(
+      'src' => $atts['watermark'],
+      'style' => array(
+        'position' => 'absolute',
+        'top' => '10px',
+        'right' => '10px',
+        'width' => '150px',
+        'height' => 'auto'
+      )
+    );
+  }
+
+  $data['theme'] = $theme;
 
   if (isset($atts['autoplay'])) $data['autoplay'] = ($atts['autoplay'] == 'true') ? true : false;
   if (isset($atts['loop'])) $data['loop'] = ($atts['loop'] == 'true') ? true : false;

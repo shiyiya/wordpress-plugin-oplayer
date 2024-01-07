@@ -2,7 +2,7 @@ for (var i = 0; i < __oplayersOptions__.length; i++) {
   var options = __oplayersOptions__[i]
   var plugins = [
     OUI({
-      theme: { primaryColor: options['theme'] },
+      theme: { primaryColor: options['theme'], watermark: options['watermark'] },
       screenshot: options['screenshot'],
       hotkey: options['hotkey'],
       subtitle: options['subtitle']['src']

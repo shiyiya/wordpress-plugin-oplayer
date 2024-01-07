@@ -31,3 +31,4 @@ Another HTML5 video player comes to WordPress.
 | subtitle.fontSize | subtitlefontsize | '20px'                                  | 字幕字号                                                               |
 | subtitle.bottom   | subtitlebottom   | '40px'                                  | 字幕距离播放器底部的距离，取值形如: '10px' '10%'                       |
 | subtitle.color    | subtitlecolor    | '#b7daff'                               | 字幕颜色                                                               |
+| watermark    | watermark    | -                              | 水印        
