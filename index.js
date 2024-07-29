@@ -1,5 +1,6 @@
 for (var i = 0; i < __oplayersOptions__.length; i++) {
   var options = __oplayersOptions__[i]
+  console.log(options)
   var plugins = [
     OUI({
       theme: options['theme'],
@@ -20,10 +21,12 @@ for (var i = 0; i < __oplayersOptions__.length; i++) {
         number: options['thumbnails']['thumbnailsCount'],
       },
     }),
+    OHls({
+      forceHLS: true,
+      library: 'https://cdn.jsdelivr.net/npm/hls.js@0.14.17/dist/hls.min.js',
+    }),
+    ODash({ library: 'https://cdn.dashjs.org/latest/dash.all.min.js' }),
   ]
-
-  if (window.Hls && window.OHls) plugins.push(OHls())
-  if (window.ODash) plugins.push(ODash())
 
   OPlayer.make(document.getElementById('player' + options['id']), {
     source: {

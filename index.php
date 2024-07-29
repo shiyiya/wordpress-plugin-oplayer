@@ -11,7 +11,7 @@
 *
 */
 
-require_once(dirname(__FILE__) . '/admin.php');
+// require_once(dirname(__FILE__) . '/admin.php');
 
 add_shortcode('oplayer', 'shortcode');
 add_action('wp_head', 'head');
@@ -43,7 +43,7 @@ function shortcode($atts, $content, $tag)
   );
 
   $theme = array(
-    'primaryColor' => isset($atts['theme']) ? $atts['theme'] : '#FADFA3'
+    'primaryColor' => isset($atts['theme']) ? $atts['theme'] : '#6668ab'
   );
 
   if(isset($atts['watermark'])){
@@ -70,9 +70,6 @@ function shortcode($atts, $content, $tag)
   $subtitle = array(
     'src' => isset($atts['subtitlesrc']) ? $atts['subtitlesrc'] : '',
     'type' => isset($atts['subtitletype']) ? $atts['subtitletype'] : 'webvtt',
-    'fontSize' => isset($atts['subtitlefontsize']) ? $atts['subtitlefontsize'] : '25px',
-    'bottom' => isset($atts['subtitlebottom']) ? $atts['subtitlebottom'] : '10%',
-    'color' => isset($atts['subtitlecolor']) ? $atts['subtitlecolor'] : '#b7daff',
   );
   $data['subtitle'] = $subtitle;
 
@@ -90,26 +87,26 @@ function head()
 
 function footer()
 {
-  if (get_option('enable_dash')) {
-    wp_enqueue_script('dash', esc_url("https://cdn.jsdelivr.net/npm/dashjs@4.5.0/dist/dash.all.min.js"), false, '4.5.0', false);
-    wp_enqueue_script('oplayer-plugin-dash', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/dash@latest/dist/index.min.js"), false, 'latest', false);
-  }
+  // if (get_option('enable_dash')) {
+  //   wp_enqueue_script('dash', esc_url("https://cdn.jsdelivr.net/npm/dashjs@4.5.0/dist/dash.all.min.js"), false, '4.5.0', false);
+  // }
 
-  if (get_option('enable_hls')) {
-    wp_enqueue_script('hls', esc_url("https://cdn.jsdelivr.net/npm/hls.js@1.2.4/dist/hls.min.js"), false, '1.2.4', false);
-    wp_enqueue_script('oplayer-plugin-hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/hls@latest/dist/index.min.js"), false, 'latest', false);
-  }
+  // if (get_option('enable_hls')) {
+  //   wp_enqueue_script('hls', esc_url("https://cdn.jsdelivr.net/npm/hls.js@1.2.4/dist/hls.min.js"), false, '1.2.4', false);
+  // }
 
-  wp_enqueue_script('oplayer-core', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/core@latest/dist/index.min.js"), false, 'latest', false);
-  wp_enqueue_script('oplayer-ui', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/ui@latest/dist/index.min.js"), false, 'latest', false);
+  wp_enqueue_script('oplayer-core', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/core@latest/dist/index.ui.js"), false, 'latest', false);
+  // wp_enqueue_script('oplayer-ui', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/ui@latest/dist/index.min.js"), false, 'latest', false);
+  wp_enqueue_script('oplayer-plugin-hls', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/hls@latest/dist/index.min.js"), false, 'latest', false);
+  wp_enqueue_script('oplayer-plugin-dash', esc_url("https://cdn.jsdelivr.net/npm/@oplayer/dash@latest/dist/index.min.js"), false, 'latest', false);
   wp_enqueue_script('init-player', plugins_url('index.js', __FILE__), false, 'latest', false);
 }
 
-function settings_link($links, $file)
-{
-  if (plugins_url('admin.php', __FILE__) === $file && function_exists('admin_url')) {
-    $settings_link = '<a href="' . esc_url(admin_url('options-general.php?page=oplayer')) . '">' . esc_html__('Settings') . '</a>';
-    array_unshift($links, $settings_link);
-  }
-  return $links;
-}
+// function settings_link($links, $file)
+// {
+//   if (plugins_url('admin.php', __FILE__) === $file && function_exists('admin_url')) {
+//     $settings_link = '<a href="' . esc_url(admin_url('options-general.php?page=oplayer')) . '">' . esc_html__('Settings') . '</a>';
+//     array_unshift($links, $settings_link);
+//   }
+//   return $links;
+// }
