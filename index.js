@@ -1,21 +1,10 @@
 for (var i = 0; i < __oplayersOptions__.length; i++) {
   var options = __oplayersOptions__[i]
-  console.log(options)
   var plugins = [
     OUI({
       theme: options['theme'],
       screenshot: options['screenshot'],
-      hotkey: options['hotkey'],
-      subtitle: options['subtitle']['src']
-        ? [
-            {
-              source: { src: options['subtitle']['src'], default: true },
-              fontSize: options['subtitle']['fontSize'],
-              bottom: options['subtitle']['bottom'],
-              color: options['subtitle']['color'],
-            },
-          ]
-        : undefined,
+      subtitle: options['subtitle'] ? [{ source: { src: options['subtitle'], default: true } }] : undefined,
       thumbnails: {
         src: options['thumbnails'],
         number: options['thumbnails']['thumbnailsCount'],

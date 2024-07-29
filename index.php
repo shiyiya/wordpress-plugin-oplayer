@@ -40,6 +40,8 @@ function shortcode($atts, $content, $tag)
     'type' => isset($atts['type']) ? $atts['type'] : 'auto',
     'thumbnails' => isset($atts['thumbnails']) ? $atts['thumbnails'] : '',
     'thumbnailsCount' => isset($atts['thumbnailsCount']) ? $atts['thumbnailsCount'] : '',
+
+    'subtitle' => $atts['subtitle']
   );
 
   $theme = array(
@@ -64,14 +66,7 @@ function shortcode($atts, $content, $tag)
   if (isset($atts['autoplay'])) $data['autoplay'] = ($atts['autoplay'] == 'true') ? true : false;
   if (isset($atts['loop'])) $data['loop'] = ($atts['loop'] == 'true') ? true : false;
   if (isset($atts['screenshot']))  $data['screenshot'] = ($atts['screenshot'] == 'true') ? true : false;
-  if (isset($atts['hotkey'])) $data['hotkey'] = ($atts['hotkey'] == 'true') ? true : false;
   if (isset($atts['preload']))  $data['preload'] = (in_array($atts['preload'], array('auto', 'metadata', 'none')) == true) ? $atts['preload'] : 'metadata';
-
-  $subtitle = array(
-    'src' => isset($atts['subtitlesrc']) ? $atts['subtitlesrc'] : '',
-    'type' => isset($atts['subtitletype']) ? $atts['subtitletype'] : 'webvtt',
-  );
-  $data['subtitle'] = $subtitle;
 
   return '<div id="player' . $id . '"></div>' . "<script>__oplayersOptions__.push(" . json_encode($data) . ");</script>";
 }
