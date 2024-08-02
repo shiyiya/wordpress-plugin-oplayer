@@ -1,14 +1,20 @@
-for (var i = 0; i < __oplayersOptions__.length; i++) {
-  var options = __oplayersOptions__[i]
+for (var i = 0; i < __oplayers__.length; i++) {
+  var o = __oplayers__[i]
   var plugins = [
     OUI({
-      theme: options['theme'],
-      screenshot: options['screenshot'],
-      subtitle: options['subtitle'] ? [{ source: { src: options['subtitle'], default: true } }] : undefined,
-      thumbnails: {
-        src: options['thumbnails'],
-        number: options['thumbnails']['thumbnailsCount'],
+      theme: o['theme'],
+      controller: {
+        header: Boolean(o['title']),
+        slideToSeek: 'always',
       },
+      screenshot: o['screenshot'],
+      subtitle: o['subtitle'] ? [{ source: { src: o['subtitle'], default: true } }] : undefined,
+      thumbnails: o['thumbnails']
+        ? {
+            src: o['thumbnails'],
+            number: o['thumbnailsCount'],
+          }
+        : undefined,
     }),
     OHls({
       forceHLS: true,
@@ -17,16 +23,17 @@ for (var i = 0; i < __oplayersOptions__.length; i++) {
     ODash({ library: 'https://cdn.dashjs.org/latest/dash.all.min.js' }),
   ]
 
-  OPlayer.make(document.getElementById('player' + options['id']), {
+  OPlayer.make(document.getElementById('player' + o['id']), {
     source: {
-      src: options['src'],
-      poster: options['poster'],
-      format: options['type'],
+      src: o['src'],
+      poster: o['poster'],
+      title: o['title'],
     },
-    volume: options['volume'],
-    preload: options['preload'],
-    autoplay: options['autoplay'],
-    loop: options['loop'],
+    loop: o['loop'],
+    volume: o['volume'],
+    preload: o['preload'],
+    autoplay: o['autoplay'],
+    autopause: o['autopause'],
   })
     .use(plugins)
     .create()
