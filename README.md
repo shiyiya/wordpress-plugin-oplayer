@@ -2,7 +2,7 @@
 
 https://github.com/shiyiya/oplayer
 
-https://wordpress.org/plugins/boaty-mcboatface
+https://wordpress.org/plugins/oplayer
 
 Another HTML5 video player comes to WordPress.
 
