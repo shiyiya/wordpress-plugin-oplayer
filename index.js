@@ -2,13 +2,15 @@ for (var i = 0; i < __oplayers__.length; i++) {
   var o = __oplayers__[i]
   var plugins = [
     OUI({
-      theme: o['theme'],
-      controller: {
-        header: Boolean(o['title']),
-        slideToSeek: 'always',
+      theme: {
+        primaryColor: o['theme'],
+        controller: {
+          header: o.title,
+          slideToSeek: 'always',
+        },
       },
-      screenshot: o['screenshot'],
-      subtitle: o['subtitle'] ? [{ source: { src: o['subtitle'], default: true } }] : undefined,
+      screenshot: +o['screenshot'],
+      subtitle: o['subtitle'] ? { source: [{ src: o['subtitle'], default: true, name: 'default' }] } : undefined,
       thumbnails: o['thumbnails']
         ? {
             src: o['thumbnails'],
@@ -29,11 +31,11 @@ for (var i = 0; i < __oplayers__.length; i++) {
       poster: o['poster'],
       title: o['title'],
     },
-    loop: o['loop'],
+    loop: +o['loop'],
     volume: o['volume'],
-    preload: o['preload'],
-    autoplay: o['autoplay'],
-    autopause: o['autopause'],
+    autoplay: +o['autoplay'],
+    autopause: +o['autopause'],
+    isLive: +o['live'],
   })
     .use(plugins)
     .create()

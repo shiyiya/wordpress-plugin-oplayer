@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: WordPress-Plugin-OPlayer
+ * Plugin Name: OPlayer
  * Plugin URI: https://github.com/shiyiya/WordPress-Plugin-OPlayer
  * Description: Another HTML5 video player comes to WordPress
- * Version: 0.0.2
+ * Version: 0.0.1
  * Author: oplayer
  * Author URI: https://oplayer.vercel.app/
  * License: GPLv3
@@ -29,25 +29,30 @@ function shortcode($atts, $content, $tag)
 
   $id = md5($_SERVER['HTTP_HOST'] . $atts['src']);
 
-  $attrs = shortcode_atts(
+  $data = shortcode_atts(
     [
       'id' => $id,
-      'live' => false,
-      'autoplay' => false,
-      'volume' => 0.8,
+      'src' => '',
+      'title' => '',
+      'poster' => '',
       'theme' => '#6668ab',
-      'autopause' => true,
-      'loop' => false,
-      'screenshot' => false,
+      'live' => 0,
+      'autoplay' => 0,
+      'autopause' => 1,
+      'loop' => 0,
+      'volume' => 0.8,
+      'screenshot' => 0,
+      'thumbnails' => '',
+      'thumbnailsCount' => 0,
+      'subtitle' => '',
+      'watermark' => '',
     ],
     $atts
   );
 
-  $theme = ['primaryColor' => $atts['theme']];
-
-  if (isset($atts['watermark'])) {
-    $theme['watermark'] = [
-      'src' => $atts['watermark'],
+  if (isset($data['watermark'])) {
+    $data['watermark'] = [
+      'src' => $data['watermark'],
       'style' => [
         'position' => 'absolute',
         'top' => '10px',
@@ -58,9 +63,7 @@ function shortcode($atts, $content, $tag)
     ];
   }
 
-  $attrs['theme'] = $theme;
-
-  return '<div id="player' . $id . '"></div>' . "<script>__oplayers__.push(" . json_encode($attrs) . ");</script>";
+  return '<div id="player' . $id . '"></div>' . "<script>__oplayers__.push(" . wp_json_encode($data) . ");</script>";
 }
 
 function head()
