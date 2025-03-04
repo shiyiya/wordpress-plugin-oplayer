@@ -31,9 +31,9 @@ for (var i = 0; i < __oplayers__.length; i++) {
       poster: o['poster'],
       title: o['title'],
     },
-    loop: +o['loop'],
+    loop: Boolean(+o['loop']),
     volume: o['volume'],
-    autoplay: +o['autoplay'],
+    autoplay: Boolean(+o['autoplay']),
     autopause: +o['autopause'],
     isLive: +o['live'],
   })
